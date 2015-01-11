@@ -8,14 +8,16 @@ package mydesignwkc;
 import javafx.event.EventHandler;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
@@ -39,12 +41,6 @@ public class PageController implements Initializable {
     private TableView<?> tableViewOglasi;
 
     @FXML
-    private ImageView imgPocetna1;
-
-    @FXML
-    private ImageView imgIzlaz1;
-
-    @FXML
     private ImageView imgIzlaz;
 
     @FXML
@@ -60,13 +56,7 @@ public class PageController implements Initializable {
     private ImageView imgPocetna;
 
     @FXML
-    private ImageView imgPregled1;
-
-    @FXML
     private TableColumn<?, ?> kolonaDatum;
-
-    @FXML
-    private ImageView imgPrijava1;
 
     @FXML
     private AnchorPane anchorPocetna;
@@ -79,80 +69,69 @@ public class PageController implements Initializable {
 
     @FXML
     private AnchorPane anchorPodesavanja;
+    
+    @FXML
+    private AnchorPane anchorProba;
 
-    private List<ImageView> imageViewList;
-    private List<ImageView> imageViewList1;
-    private List<AnchorPane> anchorPaneList;
+    private AnchorPane activeAnchorPane;
+
+    private Map<ImageView, AnchorPane> anchorMap;
 
     private final EventHandler<MouseEvent> eventOnClick = new EventHandler<MouseEvent>() {
 
         @Override
         public void handle(MouseEvent t) {
-            for (ImageView imgView : imageViewList1) {
-                AnchorPane tmp = anchorPaneList.get(imageViewList1.indexOf(imgView));
-                if (t.getTarget().equals(imgView)) {
-                    tmp.setVisible(true);
-                } else if (tmp != null) {
-                    tmp.setVisible(false);
-                }
+            activeAnchorPane.setVisible(false);
+            activeAnchorPane = anchorMap.get((ImageView) t.getTarget());
+            if (activeAnchorPane == null) {
+                System.exit(0);
             }
+            activeAnchorPane.setVisible(true);
         }
     };
     private final EventHandler<MouseEvent> eventOnEntered = new EventHandler<MouseEvent>() {
 
         @Override
         public void handle(MouseEvent t) {
-            for (ImageView imgView : imageViewList) {
-                if (t.getTarget().equals(imgView)) {
-                    ImageView tmp = imageViewList1.get(imageViewList.indexOf(imgView));
-                    tmp.setVisible(true);
-                }
-            }
+            ImageView tmp = (ImageView) t.getTarget();
+            tmp.setFitHeight(100);
+            tmp.setFitWidth(100);
+            tmp.setRotate(25);
         }
     };
     private final EventHandler<MouseEvent> eventOnExited = new EventHandler<MouseEvent>() {
 
         @Override
         public void handle(MouseEvent t) {
-            for (ImageView imgView : imageViewList1) {
-                imgView.setVisible(false);
-            }
+            ImageView tmp = (ImageView) t.getTarget();
+            tmp.setFitHeight(80);
+            tmp.setFitWidth(80);
+            tmp.setRotate(0);
         }
     };
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        imageViewList = new ArrayList<ImageView>(5);
-        imageViewList1 = new ArrayList<ImageView>(5);
-        anchorPaneList = new ArrayList<AnchorPane>(5);
+        anchorMap = new HashMap<ImageView, AnchorPane>();
 
-        imageViewList.add(imgPocetna);
-        imageViewList.add(imgPodesavanja);
-        imageViewList.add(imgPrijava);
-        imageViewList.add(imgPregled);
-        imageViewList.add(imgIzlaz);
+        anchorMap.put(imgPocetna, anchorPocetna);
+        anchorMap.put(imgPodesavanja, anchorPodesavanja);
+        anchorMap.put(imgPrijava, anchorPrijava);
+        anchorMap.put(imgPregled, anchorPregled);
+        anchorMap.put(imgIzlaz, anchorProba);
 
-        imageViewList1.add(imgPocetna1);
-        imageViewList1.add(imgPodesavanja1);
-        imageViewList1.add(imgPrijava1);
-        imageViewList1.add(imgPregled1);
-        imageViewList1.add(imgIzlaz1);
+        activeAnchorPane = anchorPocetna;
+        activeAnchorPane.setVisible(true);
 
-        anchorPaneList.add(anchorPocetna);
-        anchorPaneList.add(anchorPodesavanja);
-        anchorPaneList.add(anchorPrijava);
-        anchorPaneList.add(anchorPregled);
-        anchorPaneList.add(null);
+        Iterator<ImageView> iterator = anchorMap.keySet().iterator();
 
-        for (ImageView imgView : imageViewList) {
-            imgView.setOnMouseEntered(eventOnEntered);
-            imgView.setOnMouseClicked(eventOnClick);
+        while (iterator.hasNext()) {
+            ImageView img = iterator.next();
+            img.setOnMouseEntered(eventOnEntered);
+            img.setOnMouseExited(eventOnExited);
+            img.setOnMouseClicked(eventOnClick);
         }
 
-        for (ImageView imgView : imageViewList1) {
-            imgView.setOnMouseExited(eventOnExited);
-            imgView.setOnMouseClicked(eventOnClick);
-        }
     }
 
 }

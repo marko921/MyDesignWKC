@@ -40,31 +40,6 @@
             <Image url="@icon/1420916269_kfm_home.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imgIzlaz1" fitHeight="90.0" fitWidth="90.0" layoutX="896.0" layoutY="15.0" visible="false" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
-         <image>
-            <Image url="@icon/1420916291_shutdown.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="imgPrijava1" fitHeight="90.0" fitWidth="90.0" layoutX="215.0" layoutY="15.0" visible="false" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="15.0">
-         <image>
-            <Image url="@icon/1420916211_Globe.png" />
-         </image>
-      </ImageView>
-      <ImageView id="imgHome" fx:id="imgPocetna1" fitHeight="90.0" fitWidth="90.0" layoutX="9.0" layoutY="15.0" visible="false" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
-         <image>
-            <Image url="@icon/1420916269_kfm_home.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="imgPregled1" fitHeight="90.0" fitWidth="90.0" layoutX="115.0" layoutY="15.0" visible="false" AnchorPane.leftAnchor="115.0" AnchorPane.topAnchor="15.0">
-         <image>
-            <Image url="@icon/1420916240_kappfinder.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="imgPodesavanja1" fitHeight="90.0" fitWidth="90.0" layoutX="315.0" layoutY="15.0" visible="false" AnchorPane.leftAnchor="315.0" AnchorPane.topAnchor="15.0">
-         <image>
-            <Image url="@icon/1420916183_Service%20Manager.png" />
-         </image>
-      </ImageView>
       <AnchorPane id="anchorPregled" fx:id="anchorPrijava" layoutX="115.0" layoutY="229.0" prefHeight="67.0" prefWidth="37.0" visible="false" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="120.0">
          <children>
             <Button layoutX="27.0" layoutY="20.0" mnemonicParsing="false" text="Dodaj takmicenje" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
@@ -129,7 +104,7 @@
                </graphic>
             </Button>
          </children></AnchorPane>
-      <AnchorPane id="anchorPocetna" fx:id="anchorPocetna" layoutX="32.0" layoutY="145.0" prefHeight="407.0" prefWidth="909.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="120.0">
+      <AnchorPane id="anchorPocetna" fx:id="anchorPocetna" layoutX="32.0" layoutY="145.0" prefHeight="407.0" prefWidth="909.0" visible="false" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="120.0">
          <children>
             <ToolBar layoutY="124.0" prefHeight="28.0" prefWidth="893.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <items>
@@ -208,6 +183,12 @@
                   <Font name="System Bold" size="28.0" />
                </font>
             </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane id="AnchorPane" fx:id="anchorProba" layoutX="100.0" layoutY="145.0" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="120.0">
+         <children>
+            <Button fx:id="btn" layoutX="138.0" layoutY="154.0" mnemonicParsing="false" text="Button" />
+            <Label fx:id="label" layoutX="263.0" layoutY="169.0" prefHeight="14.0" prefWidth="171.0" text="Label" />
          </children>
       </AnchorPane>
    </children>

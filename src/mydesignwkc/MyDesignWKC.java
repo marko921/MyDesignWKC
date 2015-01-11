@@ -21,7 +21,9 @@ public class MyDesignWKC extends Application {
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Page.fxml"));
         fxmlLoader.setController(new PageController());
+        
         Parent root = fxmlLoader.load();
+        
         Scene scene = new Scene(root);
 
         stage.setScene(scene);
